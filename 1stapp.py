@@ -15,7 +15,9 @@ def translate(w):
 	w = w.lower()
 	#If the word is in the file return the value
 	if w in data:
-		return data[w]
+		 for i in data[w]:
+		 	return "\n%s" % i 
+
 
 	#if a Word is not in the file return spellcheck warning	
 	elif len(get_close_matches(w, data.keys())) > 0:
@@ -25,26 +27,27 @@ def translate(w):
 	 uw = str((get_close_matches(w, data.keys())[0]))
  	
  	#Now we are asking for a y for yes or a n for no to still execute the program
-	 answer = input("Did you want to enter %s instead? y/n\n" % str(get_close_matches(w, data.keys())[0]))
+	 answer = input("Did you want to enter %s instead? y/n: " % str(get_close_matches(w, data.keys())[0]))
 
-	 if answer == "y":
+	 if answer.lower() == "y":
 
 	 		#now we need to take the crrected word and make it the variable 		 
-	 	return data[uw]
+	 	for i in data[uw]:
+	 		return "\n%s" % i
 
-	 if answer == "n":
+	 elif answer.lower() == "n":
 
 	 	return "That Word Doesn't Exist!"
 
-	 if answer != "y" or "n":
+	 else:
 
-	 	return "input was not an option"
+	 	return "Input was not an option please double check it."
 
 	 #Else if there is no possible word return a no such word phrase
 	else:
 		return "\nThe word you typed doesn't exist! Please double check it"
 
-w = input("Enter a Word: \n")
+w = input("Enter a Word: ")
 
 
 print(translate(w))
