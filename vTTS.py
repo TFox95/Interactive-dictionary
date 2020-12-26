@@ -7,7 +7,7 @@ def recordAudio():
 	vdata = str("")
 	r = sr.Recognizer() # Creating a recognizer object
 	with sr.Microphone() as source:
-		print("say Word: ")  #for testing purposes only; if it works comment this whole line
+		print("say What's the definition of \"word\": ")  #for testing purposes only; if it works comment this whole line
 		audio = r.listen(source)
 		try: # use Google's Speech Recognition
 			vdata = r.recognize_google(audio)
@@ -18,4 +18,4 @@ def recordAudio():
 		except sr.RequestError as re:
 			print("Request results from Google Speech Recognition service error" + re) # This is incase if I get disconnected 
 
-		return vdata.split()
+		return vdata

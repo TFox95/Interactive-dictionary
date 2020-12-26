@@ -27,9 +27,12 @@ def translate(w):
 
 def vtranslate():
      """This is a function to find a voice word in the json file""" # <--- 
-     vwords = recordAudio()
-     vwords = vwords
-     for i in range(0, len(vwords)):
-        if i + 5 <= len(vwords) -1 and vwords[i].lower() == "what's" and vwords[i + 1].lower() == "the" and vwords[i + 2].lower() == "definition" and vwords[i + 3].lower() == "of":
-            return str(vwords[i + 4])
+     vword = recordAudio()
+     if str("what's the definition of") in vword:
+        vlist = vword.split()
+        if vlist[-1] in data:
+            return data[vlist[-1]]
+        elif str("what's the definition of") not in vword:
+            return str("voice was not able to decipher keyword")
+
 print(vtranslate())
