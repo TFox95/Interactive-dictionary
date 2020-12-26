@@ -1,5 +1,6 @@
 import speech_recognition as sr
 from gtts import gTTS
+#from classes import vdata
 
 def recordAudio():
 	""" This is a function to Record audio"""
@@ -8,7 +9,6 @@ def recordAudio():
 	with sr.Microphone() as source:
 		print("say Word: ")  #for testing purposes only; if it works comment this whole line
 		audio = r.listen(source)
-
 		try: # use Google's Speech Recognition
 			vdata = r.recognize_google(audio)
 			print(f"you said, \"{vdata}\"")
@@ -18,4 +18,4 @@ def recordAudio():
 		except sr.RequestError as re:
 			print("Request results from Google Speech Recognition service error" + re) # This is incase if I get disconnected 
 
-		return vdata
+		return vdata.split()

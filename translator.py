@@ -1,12 +1,13 @@
 import json
 from difflib import get_close_matches
+from vTTS import recordAudio
 
 #This is loading the json file
 data = json.load(open("data.json", "r"))
 
 def translate(w):
-    """This is a function to find a word in the json file""" # <--- use docstrings
-    w = w.lower()                                              # <--- also cleaned up this little block before matches
+    """This is a function to find a word in the json file""" # <--- 
+    w = w.lower()                                              
     if w in data:
         return data[w]
 
@@ -23,3 +24,10 @@ def translate(w):
             return print("Input was not an option please double check it.")
     else:
         return "\nThe word you typed doesn't exist! Please double check it"          # <--- .... to here
+
+def vtranslate():
+     """This is a function to find a voice word in the json file""" # <--- 
+     vwords = recordAudio()
+     vwords = vwords.lower()
+    
+     
