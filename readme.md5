@@ -1,0 +1,4 @@
+This application is a dictionary. it started off as a text only app; but now you can interface with the app using 
+voice by utilizing google's gTTS online service service to decypher your speech. I will be attempting to add a 
+history function to the app and doing some more improvements. also thinking of making a GUI for this app but that 
+will be later down the line.
