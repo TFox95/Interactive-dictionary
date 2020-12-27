@@ -1,6 +1,7 @@
 import json
 from difflib import get_close_matches
 from vTTS import recordAudio
+from decypher import decypher
 
 #This is loading the json file
 data = json.load(open("data.json", "r"))
@@ -26,13 +27,20 @@ def translate(w):
         return "\nThe word you typed doesn't exist! Please double check it"          # <--- .... to here
 
 def vtranslate():
-     """This is a function to find a voice word in the json file""" # <--- 
+     """This is a function to find a voice word in the json file""" # <---
      vword = recordAudio()
      if str("what's the definition of") in vword:
         vlist = vword.split()
         if vlist[-1] in data:
             return data[vlist[-1]]
-        elif str("what's the definition of") not in vword:
-            return str("voice was not able to decipher keyword")
+     elif str("what's the definition of") not in vword:
+        return str("voice was not able to decipher keyword. ")
 
-print(vtranslate())
+def vtranslation():
+    output = vtranslate()
+    decypher(output)
+
+def wtranslation():
+    word = input("Enter a Word: ") # <--- changed the value from w to word
+    output = translate(word)
+    decypher(output)

@@ -1,6 +1,5 @@
 import speech_recognition as sr
 from gtts import gTTS
-#from classes import vdata
 
 def recordAudio():
 	""" This is a function to Record audio"""
