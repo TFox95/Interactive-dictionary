@@ -1,1 +1,12 @@
-punch kick
+punch
+kick
+hello
+race
+food
+loser
+box
+
+fox
+query
+beer
+bird

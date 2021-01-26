@@ -2,6 +2,7 @@ import json
 from difflib import get_close_matches
 from vTTS import recordAudio
 from decypher import decypher
+from history import checkHistory
 
 #This is loading the json file
 data = json.load(open("data.json", "r"))
@@ -12,16 +13,18 @@ def translate():
     w = w.lower()
 
     if w in data:
+        checkHistory(w)
         output = data[w]
         return decypher(output)
 
     matches = get_close_matches(w, data.keys()) # <--- pulled this out of all the lower parts so this is only being called once instead of 3 times. lowers complexity and runtime
     if len(matches) > 0:
-        print(f'The Word you spelled was not in the dictionary. I think you meant to say this {matches[0]}?') # <--- using fstrings because they are better
+        print(f'The Word you spelled was not in the dictionary. I think you meant to say this, \"{matches[0]}\"?') # <--- using fstrings because they are better
         uw = str(matches[0])
         answer = input("Did you want to enter {} instead? y/n: ".format(str(matches[0]))) # <--- another superior option for string formatting but not as good as fstrings
 
-        if answer.lower() == "y":                                                    # <--- cleaned up formatting from here....         
+        if answer.lower() == "y":                                                    # <--- cleaned up formatting from here....
+            checkHistory(uw)
             output = data[uw]
             return decypher(output)
 
@@ -38,6 +41,7 @@ def vtranslate():
      if str("what's the definition of") in vword:
         vlist = vword.split()
         if vlist[-1] in data:
+            checkHistory(vlist[-1])
             output = data[vlist[-1]]
             return decypher(output)
      elif str("what's the definition of") not in vword:

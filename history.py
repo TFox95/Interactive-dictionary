@@ -18,26 +18,35 @@ def history():
             return "Done"
 
         elif answer == "n":
-            return "Skipping, No History on this device."
+            return print("Skipping, No History on this device.")
 
     elif myHistory == True:         #If there's a history file we are going to ask if they want to view previous searched words
         answer = input("Do you want to see your previous searches? y/n: ")
 
-        if answer == "y":
+        if ("y" or "yes") in answer:
             with open("searches.txt") as myFile:            # ^^ See second comment above this one
                 contents = myFile.read()
                 contentslist = contents.split()
             print(f"Here's your previous searches, '{contents}'")
             answer = input("Which previous word do you want to get the definition of? \nEnter here: ")
-            for item in contentslist:           #Here we use a for loop to check and see if the word is in the history file
-                if(item == answer):
-                    return decypher(data[item])
-                else:
-                    return print(f"{answer} is not in the history file")
+            if answer in contentslist:
+                return decypher(data[answer])
 
-        elif answer == "n":
-            return "Skipping previous searched words."
-            
+        elif ("n" or "no") in answer:
+            return print("Skipping previous searched words.")
+
     else:
         return "Error 404"
-history()
+
+def checkHistory(value):
+    myHistory = path.exists("searches.txt")
+    if myHistory == True:
+        answer = input(f"Do you want to save {value} in your history file?\ny/n: ")
+        if answer == ("y" or "yes"):
+            with open("searches.txt", "a+") as myFile:
+                myFile.writelines(f"\n{value}")
+                print(f"{value} has been saved in your history file!")
+        if answer == ("n" or "no"):
+            return print(f"{value} was not saved in history file.")
+    else:
+        return None
