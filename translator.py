@@ -33,16 +33,18 @@ def translate():
         else:
             return print("Input was not an option please double check it.")
     else:
-        return "\nThe word you typed doesn't exist! Please double check it"          # <--- This is just encase the word doesn't exist
+        return print("\nThe word you typed doesn't exist! Please double check it")          # <--- This is just encase the word doesn't exist
 
 def vtranslate():
      """This is a function to find a voice word in the json file""" # <---
-     vword = recordAudio()
-     if str("what's the definition of") in vword:
-        vlist = vword.split()
-        if vlist[-1] in data:
-            checkHistory(vlist[-1])
-            output = data[vlist[-1]]
-            return decypher(output)
-     elif str("what's the definition of") not in vword:
-        return str("voice was not able to decipher keyword. ")
+    vQuestion = False
+    while vQuestion == False:
+        vword = recordAudio()
+
+        if str("what's the definition of ") in vword:
+            vQuestion = True
+            vlist = vword.split()
+            if vlist[-1] in data:
+                checkHistory(vlist[-1])
+                output = data[vlist[-1]]
+                return decypher(output)
