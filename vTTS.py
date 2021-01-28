@@ -9,8 +9,8 @@ def recordAudio():
 		print("say What's the definition of \"word\": ")  #for testing purposes only; if it works comment this whole line
 		audio = r.listen(source)
 		try: # use Google's Speech Recognition
-			#vdata = r.recognize_google(audio)
-			print(f"you said, \"{vdata}\"") #for testing purposes
+			vdata = r.recognize_google(audio)
+			#print(f"you said, \"{vdata}\"") #for testing purposes
 		except sr.UnknownValueError: # This will allow us to check for unknown errors
 			print("Google Speech Recognition could not understand error, unknown error")
 			return vdata

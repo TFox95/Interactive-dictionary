@@ -37,10 +37,10 @@ def translate():
 
 def vtranslate():
      """This is a function to find a voice word in the json file""" # <---
-    vQuestion = False
-    while vQuestion == False:
+     vQuestion = False
+     while vQuestion == False:
         vword = recordAudio()
-
+        vword = vword.lower()
         if str("what's the definition of ") in vword:
             vQuestion = True
             vlist = vword.split()
